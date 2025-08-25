@@ -1,6 +1,7 @@
 import requests
 import os
 import pywhatkit as kit
+import time
 
 def getMatchResult(partida, puuid):
     partida = requests.get(f'https://americas.api.riotgames.com/lol/match/v5/matches/{partida}', params= {"api_key": os.getenv("RIOT_KEY")})
@@ -10,7 +11,9 @@ def getMatchResult(partida, puuid):
 
 def createMessage(resultados, phone):
     if len(resultados) == 0:
-        kit.sendwhatmsg_instantly(phone, "Vai jogar filho o bot tem que funcionar aqui")
+        kit.sendwhatmsg_instantly(phone, "Vai jogar filho o bot tem que funcionar aqui", tab_close=True)
+        print("mensagem enviada")
     else:
         derrotas = sum(1 for result in resultados if result is False)
-        kit.sendwhatmsg_instantly(phone, f"Parabéns pelas {derrotas} derrotas atuais!")
+        kit.sendwhatmsg_instantly(phone, f"Parabéns pelas {derrotas} derrotas atuais!", tab_close=True)
+        print("mensagem enviada")
