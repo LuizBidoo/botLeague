@@ -15,5 +15,11 @@ def createMessage(resultados, phone):
         print("mensagem enviada")
     else:
         derrotas = sum(1 for result in resultados if result is False)
-        kit.sendwhatmsg_instantly(phone, f"Parabéns pelas {derrotas} derrotas atuais!", tab_close=True)
+        if derrotas > 1:
+            kit.sendwhatmsg_instantly(phone, f"Parabéns pelas {derrotas} derrotas atuais! KKKKKKKKKKKKKK", tab_close=True)
+        elif derrotas == 1:
+            kit.sendwhatmsg_instantly(phone, f"Parabéns pela derrota atual! kkk", tab_close=True)
+        else: 
+            kit.sendwhatmsg_instantly(phone, f"para de vencer por obséquio", tab_close=True)
+        
         print("mensagem enviada")
