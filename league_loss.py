@@ -1,7 +1,6 @@
 import requests
 from dotenv import load_dotenv
 import os
-import json
 from utils import getMatchResult, createMessage
 import time
 
@@ -16,6 +15,8 @@ puuid = leagueName["puuid"]
 partidas_cache = []
 
 while True:
+    os.remove("PyWhatKit_DB.txt") ## remove arquivo de DB do PyWhatKit
+
     matches = requests.get(f'https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids?start=0&count=5', params= {"api_key": os.getenv("RIOT_KEY")})
 
     partidas = matches.json()
@@ -31,7 +32,7 @@ while True:
 
         createMessage(resultados, os.getenv("USER_PHONE"))
     
-    time.sleep(3600)
+    time.sleep(1800)
 
 
 
